@@ -1,4 +1,0 @@
-## Understand
-
-
-MVP should 
