@@ -40,7 +40,8 @@ function App() {
   // METHODS
   const clear = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setPlaying(!playing);
+    setGeneration(0);
+    setPlaying(false);
     setGrid(empty2Dgrid(size));
   };
 
@@ -54,10 +55,12 @@ function App() {
   };
 
   const toggleCellStatus = (i: number, k: number) => {
-    const newGrid = produce(grid, (gridCopy: Array<number[]>) => {
-      gridCopy[i][k] = grid[i][k] === 0 ? 1 : 0;
-    });
-    setGrid(newGrid);
+    if (!playing) {
+      const newGrid = produce(grid, (gridCopy: Array<number[]>) => {
+        gridCopy[i][k] = grid[i][k] === 0 ? 1 : 0;
+      });
+      setGrid(newGrid);
+    }
   };
 
   const toggleSimulation = () => {
